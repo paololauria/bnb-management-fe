@@ -1,0 +1,56 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.left-card, .right-card {
+  width: calc(50% - 20px);
+  margin: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-family: "Protest Strike", sans-serif;
+  margin-bottom: 10px;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.room-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.container-vertical-layout {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.room-info h4 {
+  margin-top: 0;
+}
+
+.button-container {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .left-card, .right-card {
+    width: calc(50% - 40px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,31 @@
+* {
+  font-family: "Protest Strike", sans-serif;
+}
+
+.custom-navbar .navbar-brand {
+  font-size: 24px;
+}
+
+.custom-navbar .nav-link {
+  font-size: 18px;
+}
+
+.custom-navbar .btn {
+  font-size: 18px;
+}
+
+.custom-navbar .navbar-brand {
+  font-size: 34px;
+}
+
+.custom-navbar .nav-link {
+  font-size: 25px;
+}
+
+.custom-navbar .btn {
+  font-size: 25px;
+}
+
+a {
+  margin: 5px;
+}

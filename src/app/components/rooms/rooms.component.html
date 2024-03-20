@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h2 class="text-center">Tutte le camere</h2>
+    <div class="col-12">
+      <div class="d-flex flex-wrap justify-content-center">
+        <mat-card class="card mb-3 mx-2" *ngFor="let room of allRooms" style="max-width: 450px;">
+          <img mat-card-image [src]="room.roomCover" alt="" />
+          <mat-card-content>
+            <h5 class="card-title">{{ room.roomName }}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="bi bi-person-exclamation"></i> {{ room.roomType }} ospiti</li>
+              <li class="list-group-item"><i class="bi bi-cash-stack"></i> {{ room.pricePerNight }}€</li>
+            </ul>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="navigateToRoomDetails(room.roomId)" routerLink="/">Maggiori dettagli</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
