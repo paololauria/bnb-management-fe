@@ -28,7 +28,9 @@ export class CalendarComponent {
     userId: null,
     checkInDate: new Date(),
     checkOutDate: new Date(),
-    totalPrice: 0
+    totalPrice: 0,
+    roomCover: '',
+    bookingId: 0
   };
   bookingDate!: FormGroup;
   bookedDates: RoomAvailabilityDto[] = [];

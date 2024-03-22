@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../../services/auth/auth.service'; // Importa AuthService
 import { BookingService } from '../../../../services/booking/booking.service';
 import { BookingDto } from '../../../../model/booking-dto';
+import { RoomsDetailsComponent } from '../../rooms/rooms-details/rooms-details.component';
 
 @Component({
   selector: 'app-user-panel',
@@ -94,4 +95,18 @@ export class UserPanelComponent implements OnInit {
   selectPredefinedImage(imageKey: string) {
     this.selectedImageKey = imageKey;
   }
+
+
+  cancelBooking(bookingId: number) {
+    this.bookingService.cancelBooking(bookingId).subscribe(
+        () => {
+            this.bookings = this.bookings.filter(booking => booking.bookingId !== bookingId);
+            console.log('Prenotazione cancellata con successo');
+        },
+        error => {
+          alert("Impossibile cancellare. Per informazioni contattare l'host.")
+            console.error('Errore durante la cancellazione della prenotazione', error);
+        }
+    );
+}
 }

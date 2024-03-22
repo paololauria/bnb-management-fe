@@ -22,7 +22,6 @@ body {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
   background-clip: border-box;
   border: 0 solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -84,4 +83,25 @@ i {
 .import {
   border: 1px solid black ;
   border-radius: 12px;
+}
+
+.booking-card {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+  background-color: ghostwhite;
+
+}
+
+.booking-card:hover {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.ptitle {
+  font-family: 'Roboto', sans-serif;
+}
+i {
+  padding: 4px;
 }

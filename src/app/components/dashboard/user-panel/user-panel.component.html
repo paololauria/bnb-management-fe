@@ -5,7 +5,9 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-
+        <div class="details user-fullname text-uppercase">
+              <p>{{userDto.firstname}} {{userDto.lastname}} </p>
+            </div>
               <!-- Contenuto del modal -->
               <ng-template #content let-modal>
                 <div class="modal-header">
@@ -15,7 +17,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  
+
                   <!-- Elenco delle immagini predefinite -->
                   <div class="row">
                     <div class="col" *ngFor="let key of predefinedImageKeys">
@@ -40,41 +42,59 @@
                 <img [src]="'assets/img/' + userDto.image" alt="Immagine Profilo" class="rounded-circle" width="150">
               </div>
               <!-- Pulsante per aprire il modal di selezione immagine -->
+              <p style="color: gray;">USER #{{userDto.id}} </p>
               <button *ngIf="this.currentUserID === userDto.id" class="btn btn-secondary" (click)="openImageSelectionModal(content)"><i class="bi bi-box-arrow-in-down"></i></button>          
+              <div class="details user" style="padding: 4px;">
+                <p>{{userDto.email}}</p>
+              </div>
             </div>
+            
           </div>
-
+          
           <!-- Pulsante per salvare l'immagine del profilo -->
         </div>
       </div>
-      <div class="col-md-8">
-
-        <div class="card mb-3">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <div *ngIf="bookings && bookings.length > 0">
-                  <h2>Prenotazioni dell'utente</h2>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Check-In</th>
-                        <th>Check-Out</th>
-                        <th>Prezzo Totale</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let booking of bookings; let i = index">
-                        <td>{{ i + 1 }}</td>
-                        <td>{{ booking.checkInDate }}</td>
-                        <td>{{ booking.checkOutDate }}</td>
-                        <td>{{ booking.totalPrice }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+      <div  *ngIf="bookings && bookings.length > 0 && currentUserID === userDto.id" class="col-md-8">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Prossimi viaggi</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div>
+              <div class="row">
+                <div *ngFor="let booking of bookings; let i = index" class="col-md-6 mb-3">
+                  <div class="card booking-card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <p class="ptitle"><i class="bi bi-luggage" style="color:green;"></i> Arrivo</p>
+                          <i class="bi bi-calendar-check d-flex justify-content-center" style="color: black;"></i>
+                          <p>{{ booking.checkInDate }}</p>
+                        </div>
+                        <div>
+                          <i class="bi bi-arrow-down-up" style="color: black;"></i>
+                        </div>
+                        <div>
+                          <p class="ptitle"><i class="bi bi-airplane" style="color:orangered;"></i> Partenza</p>
+                          <i class="bi bi-calendar-x d-flex justify-content-center" style="color: black;"></i>
+                          <p>{{ booking.checkOutDate }}</p>
+                        </div>
+                      </div>
+                      <button *ngIf="currentUserID === userDto.id" class="btn btn-danger" (click)="cancelBooking(booking.bookingId)">
+                        Cancella prenotazione
+                    </button>
+        
+                      <!-- <p class="ptitle">Prezzo Totale: {{ booking.totalPrice }}</p> -->
+                    </div>
+                    <img [src]="booking.roomCover" alt="Room Cover Image" class="card-img-bottom room-image" />
+                  </div>
                 </div>
-                <div *ngIf="bookings && bookings.length === 0">
-                  <p>Nessuna prenotazione trovata per questo utente.</p>
-                </div>
-                
+              </div>
+            </div>
+            <div *ngIf="bookings && bookings.length === 0">
+              <p>Nessuna prenotazione trovata per questo utente.</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      

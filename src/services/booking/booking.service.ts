@@ -23,4 +23,7 @@ export class BookingService {
   getAllBookingsByUser(userId: number): Observable<BookingDto[]> {
     return this.http.get<BookingDto[]>(`${this.baseUrl}/${userId}/confirm`);
 }
+cancelBooking(bookingId: number): Observable<void> {
+  return this.http.post<void>(`${this.baseUrl}/cancel/${bookingId}`, null);
+}
 }

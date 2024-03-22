@@ -1,0 +1,8 @@
+@font-face {
+   font-family: 'BnB';
+   src: url('assets/fonts/airbnb-cereal-font/AirbnbCereal_W_Lt.otf') format('truetype');
+ }
+ 
+ * {
+   font-family: 'BnB', sans-serif; 
+ }

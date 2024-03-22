@@ -1,8 +1,10 @@
 export interface BookingDto {
-   roomId: number;
+  bookingId: number; 
+  roomId: number;
    userId?: number | null;
    checkInDate: Date;
    checkOutDate: Date;
    totalPrice?: number;
+   roomCover: string;
  }
  

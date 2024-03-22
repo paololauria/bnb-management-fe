@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from '../../material/material.module';
 
 const dashboardRoutes: Routes = [
   { path: 'user/:userId', component: UserPanelComponent },
@@ -18,6 +19,7 @@ const dashboardRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
+    MaterialModule,
     RouterModule.forChild(dashboardRoutes),
   ],
   exports: [
