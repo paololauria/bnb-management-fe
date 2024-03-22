@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, catchError } from 'rxjs';
-import { User } from '../../model/user';
+import { Observable } from 'rxjs';
 import { UserDto } from '../../model/user-dto';
 
 @Injectable({
@@ -11,7 +9,7 @@ import { UserDto } from '../../model/user-dto';
 export class UserService {
   private baseUrl = 'http://localhost:8080/api/user';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
   getAllUser(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(`${this.baseUrl}/all`);
@@ -21,4 +19,7 @@ export class UserService {
     return this.http.get<UserDto>(`${this.baseUrl}/${userId}`);
   }
 
+  uploadUserProfileImage(userId: number, imageUrl: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/${userId}/profile-image`, imageUrl, { observe: 'response' });
+  }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookingDto } from '../../model/booking-dto';
 import { Observable } from 'rxjs';
+import { RoomAvailabilityDto } from '../../model/room-availability-dto';
 
 
 @Injectable({
@@ -16,5 +17,10 @@ export class BookingService {
   makeBooking(bookingRequest: any): Observable<BookingDto> {
    return this.http.post<BookingDto>(`${this.baseUrl}/make`, bookingRequest);
  }
-
+ getBookedDates(): Observable<RoomAvailabilityDto[]> {
+  return this.http.get<RoomAvailabilityDto[]>(`${this.baseUrl}/booked-dates`);
+}
+  getAllBookingsByUser(userId: number): Observable<BookingDto[]> {
+    return this.http.get<BookingDto[]>(`${this.baseUrl}/${userId}/confirm`);
+}
 }

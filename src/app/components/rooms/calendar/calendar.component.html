@@ -3,14 +3,17 @@
 	<mat-date-range-input
 	  [formGroup]="bookingDate"
 	  [rangePicker]="campaignOnePicker"
+	  [dateFilter]="dateFilter"
 	>
 	  <input matStartDate placeholder="Check-in" formControlName="start">
 	  <input matEndDate placeholder="Check-out" formControlName="end">
-	</mat-date-range-input>
+</mat-date-range-input>
+	
 	<mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-	<mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-	<mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+	<mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker" ></mat-datepicker-toggle>
+	<mat-date-range-picker #campaignOnePicker ></mat-date-range-picker>
  </mat-form-field>
- 
+
+ <p>Prezzo {{ bookingRequest.totalPrice}}</p>
  <button mat-button (click)="makeBooking()" [disabled]="!bookingDate.valid">Prenota</button>
  

@@ -78,3 +78,10 @@ i {
   height: 150px;
   object-fit: cover;
 }
+.selected {
+  border: 2px solid blue; 
+}
+.import {
+  border: 1px solid black ;
+  border-radius: 12px;
+}

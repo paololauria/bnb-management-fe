@@ -4,11 +4,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from '../../material/material.module';
 
-const authenticationRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-];
+
+
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -16,7 +15,7 @@ const authenticationRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forChild(authenticationRoutes),
+    MaterialModule
   ],
   exports: [LoginComponent, RegisterComponent],
 })

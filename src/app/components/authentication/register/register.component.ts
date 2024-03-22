@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  AuthService
-} from '../../../../services/auth/auth.service';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +9,8 @@ import {
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  @Output() registerSuccess: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(private authService: AuthService, private router: Router) {}
 
   register(form: NgForm) {
@@ -23,17 +23,14 @@ export class RegisterComponent {
     const password = form.value.password;
     const birthdate = form.value.birthdate;
 
-    this.authService
-      .register(firstname, lastname, email, password, birthdate)
-      .subscribe({
-        next: (resData) => {
-          console.log(resData);
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          alert(error);
-          console.log(error);
-        },
-      });
+    this.authService.register(firstname, lastname, email, password, birthdate).subscribe({
+      next: (resData) => {
+        this.registerSuccess.emit();
+      },
+      error: (error) => {
+        alert(error);
+        console.log(error);
+      },
+    });
   }
 }

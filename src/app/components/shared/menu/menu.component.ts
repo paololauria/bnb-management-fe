@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../../authentication/login/login.component';
+import { RegisterComponent } from '../../authentication/register/register.component';
 import { User } from '../../../../model/user';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserDto } from '../../../../model/user-dto';
 
 @Component({
   selector: 'app-menu',
@@ -11,16 +13,22 @@ import { UserDto } from '../../../../model/user-dto';
 })
 export class MenuComponent implements OnInit {
   user: User | null = null;
-  userDto!: UserDto;
+  returnUrl: string = ''; 
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: NgbModal 
   ) {}
 
   ngOnInit(): void {
     this.authService.checkLocalStorage();
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.returnUrl = event.url;
+      }
+    });
   }
 
   checkAdmin(): boolean {
@@ -42,6 +50,24 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/user', this.user?.id]);
     }
   }
-  
 
+  openLoginModal() {
+    const modalRef = this.modalService.open(LoginComponent, { centered: true });
+    modalRef.componentInstance.loginSuccess.subscribe(() => {
+      modalRef.close(); 
+      if (this.returnUrl && this.returnUrl !== '/') {
+        this.router.navigateByUrl(this.returnUrl);
+      }
+    });
+  }
+  
+  openRegisterModal() {
+    const modalRef = this.modalService.open(RegisterComponent, { centered: true, size: 'lg'});
+    modalRef.componentInstance.registerSuccess.subscribe(() => {
+      modalRef.close(); 
+      if (this.returnUrl && this.returnUrl !== '/') {
+        this.router.navigateByUrl(this.returnUrl);
+      }
+    });
+  }
 }

@@ -1,0 +1,29 @@
+
+ 
+ .login-card, .modal-card {
+   border-radius: 12px;
+   max-width: 500px; 
+   width: 100%; 
+ }
+ 
+ .form-field {
+   width: 100%;
+ }
+ 
+ .button-flex-container {
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 20px;
+ }
+ 
+ .button-flex-container button {
+   min-width: auto; 
+   padding: 8px 16px;
+   border: 2px solid black;
+   color: orangered;
+ }
+
+ a {
+   color: dodgerblue;
+   
+ }

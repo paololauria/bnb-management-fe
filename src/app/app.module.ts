@@ -14,13 +14,13 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './material/material.module';
 import { FaqComponent } from './components/home/faq/faq.component';
-import { SwitchModeComponent } from './components/shared/switch-mode/switch-mode.component';
 import { ImagesRoomPreviewComponent } from './components/rooms/images-room-preview/images-room-preview.component';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
       ],
   imports: [
     BrowserModule,

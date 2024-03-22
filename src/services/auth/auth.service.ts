@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../model/user';
+import { jwtDecode } from 'jwt-decode';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../../app/components/authentication/login/login.component';
 
 export interface AuthResponseData {
   access_token: string;
@@ -21,9 +24,20 @@ export interface AuthResponseData {
 })
 export class AuthService {
   user = new BehaviorSubject<User | null>(null);
+  returnUrl: string = '';
   private baseUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private modalService: NgbModal) {}
+
+  openLoginModal() {
+    const modalRef = this.modalService.open(LoginComponent, { centered: true });
+    modalRef.componentInstance.loginSuccess.subscribe(() => {
+      modalRef.close(); // Chiudi la modal quando il login è completato con successo
+      if (this.returnUrl && this.returnUrl !== '/') {
+        this.router.navigateByUrl(this.returnUrl);
+      }
+    });
+  }
 
   checkStatus() {
     if (this.user.value) {
@@ -42,6 +56,10 @@ export class AuthService {
       console.log(userD.constructor);
       this.user.next(userD);
     }
+  }
+
+  getUser(): User | null {
+    return this.user.value;
   }
 
   logout() {
@@ -151,3 +169,7 @@ export class AuthService {
     return throwError(() => errorMessage);
   }
 }
+function jwt_decode(access_token: any): any {
+  throw new Error('Function not implemented.');
+}
+

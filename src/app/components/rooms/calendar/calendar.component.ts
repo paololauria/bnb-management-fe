@@ -1,9 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { Component, Input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookingService } from '../../../../services/booking/booking.service';
+
+import { AuthService } from '../../../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { RoomAvailabilityDto } from '../../../../model/room-availability-dto';
 import { BookingDto } from '../../../../model/booking-dto';
 
 const today = new Date();
@@ -18,34 +22,55 @@ const today = new Date();
 })
 export class CalendarComponent {
 
-  @Input() roomId: number = 2; 
-
+  @Input() roomId: number = 2;
   bookingRequest: BookingDto = {
     roomId: this.roomId,
-    guestName: '',
+    userId: null,
     checkInDate: new Date(),
-    checkOutDate: new Date()
+    checkOutDate: new Date(),
+    totalPrice: 0
   };
   bookingDate!: FormGroup;
+  bookedDates: RoomAvailabilityDto[] = [];
 
-  
+  constructor(private router: Router, private bookingService: BookingService, private authService: AuthService) {}
 
-  constructor(private bookingService: BookingService) {}
   ngOnInit() {
-    // Inizializza il form
     this.bookingDate = new FormGroup({
       start: new FormControl(),
       end: new FormControl()
     });
+    this.setUserIdFromAuth();
+    this.getBookedDates();
   }
 
+  setUserIdFromAuth() {
+    const user = this.authService.getUser();
+    if (user) {
+      this.bookingRequest.userId = user.id;
+    } else {
+      console.error('Utente non autenticato');
+    }
+  }
+
+  getBookedDates() {
+    this.bookingService.getBookedDates().subscribe(
+      (dates: RoomAvailabilityDto[]) => {
+        this.bookedDates = dates;
+      },
+      (error) => {
+        console.error('Errore durante il recupero delle date prenotate', error);
+      }
+    );
+  }
   makeBooking() {
-    if (this.bookingDate.valid) {
+    if (this.bookingRequest.userId !== null && this.bookingDate.valid) { 
       this.bookingRequest.checkInDate = this.bookingDate.value.start;
       this.bookingRequest.checkOutDate = this.bookingDate.value.end;
 
       this.bookingService.makeBooking(this.bookingRequest).subscribe(
         (response) => {
+          alert("Prenotazione effettuata con successo dal giorno " + this.bookingRequest.checkInDate + " al giorno " + this.bookingRequest.checkOutDate + "! Al prezzo totale di " + this.bookingRequest.totalPrice + "😁")
           console.log('Prenotazione effettuata con successo', response);
         },
         (error) => {
@@ -53,7 +78,8 @@ export class CalendarComponent {
         }
       );
     } else {
-      console.error('Form non valido');
+      console.error('Impossibile effettuare la prenotazione. Utente non autenticato.');
+      this.authService.openLoginModal();
     }
   }
 
@@ -66,4 +92,13 @@ export class CalendarComponent {
       return null;
     };
   } 
+
+  dateFilter = (date: Date) => {
+    if (date < new Date()) {
+      return false;
+    }
+    return !this.bookedDates.some((bookedDate) => {
+      return date >= new Date(bookedDate.checkInDate) && date <= new Date(bookedDate.checkOutDate);
+    });
+  };
 }

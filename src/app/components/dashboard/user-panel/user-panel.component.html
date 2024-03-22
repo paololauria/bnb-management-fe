@@ -5,56 +5,76 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img
-                src="https://media.licdn.com/dms/image/D4D03AQHLOvsnUM1iig/profile-displayphoto-shrink_800_800/0/1694252603188?e=2147483647&v=beta&t=xIAXwJoD9EL2e6dQdo0BG61J5yWKDHMGKJ4R5cv4fAw"
-                alt="Admin"
-                class="rounded-circle"
-                width="150"
-              />
-              <div class="mt-3">
-                <h4>{{ userDto.firstname }} {{ userDto.lastname }}</h4>
-                <p class="text-secondary mb-1">USER #{{ userDto.id }}</p>
-                <p class="text-muted font-size-sm"></p>
+
+              <!-- Contenuto del modal -->
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title"><i class="bi bi-box-arrow-in-down"></i></h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  
+                  <!-- Elenco delle immagini predefinite -->
+                  <div class="row">
+                    <div class="col" *ngFor="let key of predefinedImageKeys">
+                      <div class="card mb-3" [ngClass]="{ 'selected': selectedImageKey === key }">
+                        <img [src]="'assets/img/' + predefinedImages[key]" class="card-img-top" alt="Immagine {{ key }}">
+                        <div class="card-body">
+                          <p class="card-text">Immagine {{ key }}</p>
+                          <button type="button" class="btn btn-primary" (click)="selectPredefinedImage(key)">Seleziona</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Annulla</button>
+                  <button type="button" class="btn btn-primary" (click)="saveProfileImage(); modal.close()">Salva immagine</button>
+                </div>
+              </ng-template>
+
+              <!-- Visualizza l'immagine del profilo selezionata -->
+              <div *ngIf="userDto.image">
+                <img [src]="'assets/img/' + userDto.image" alt="Immagine Profilo" class="rounded-circle" width="150">
               </div>
+              <!-- Pulsante per aprire il modal di selezione immagine -->
+              <button *ngIf="this.currentUserID === userDto.id" class="btn btn-secondary" (click)="openImageSelectionModal(content)"><i class="bi bi-box-arrow-in-down"></i></button>          
             </div>
           </div>
+
+          <!-- Pulsante per salvare l'immagine del profilo -->
         </div>
       </div>
       <div class="col-md-8">
+
         <div class="card mb-3">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Full name</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                {{ userDto.firstname }} {{ userDto.lastname }}
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                {{ userDto.email }}
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Birthdate</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                {{ userDto.birthdate | date : "dd-MM-yyy" }}
-              </div>
-            </div>
-            <hr />
-          </div>
-        </div>
-      </div>
-      
-        </div>
-      </div>
-    </div>
-
+                <div *ngIf="bookings && bookings.length > 0">
+                  <h2>Prenotazioni dell'utente</h2>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Check-In</th>
+                        <th>Check-Out</th>
+                        <th>Prezzo Totale</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let booking of bookings; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ booking.checkInDate }}</td>
+                        <td>{{ booking.checkOutDate }}</td>
+                        <td>{{ booking.totalPrice }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div *ngIf="bookings && bookings.length === 0">
+                  <p>Nessuna prenotazione trovata per questo utente.</p>
+                </div>
+                

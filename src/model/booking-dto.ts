@@ -1,7 +1,8 @@
 export interface BookingDto {
    roomId: number;
-   guestName: string;
+   userId?: number | null;
    checkInDate: Date;
    checkOutDate: Date;
+   totalPrice?: number;
  }
  

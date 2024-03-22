@@ -5,12 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.css']
 })
-export class FaqComponent implements OnInit {
+export class FaqComponent {
   panelOpenState = false;
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
 
   
 

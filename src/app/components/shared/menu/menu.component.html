@@ -1,8 +1,4 @@
-
-<nav
-  class="navbar navbar-expand-lg custom-navbar"
-  style="max-width: 1200px; margin: auto; background-color: white"
->
+<nav class="navbar navbar-expand-lg custom-navbar" style="max-width: 1200px; margin: auto; background-color: white">
   <div class="container-fluid">
     <a class="navbar-brand" href="#" style="color:tomato">
       B<span style="color: black">n</span>B
@@ -21,67 +17,29 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item active">
-          <a
-            class="nav-link"
-            routerLink="/"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Home</a
-          >
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/camere" routerLinkActive="active"
-            >Camere</a
-          >
+          <a class="nav-link" routerLink="/camere" routerLinkActive="active">Camere</a>
         </li>
         <li class="nav-item">
-          <a
-            *ngIf="checkUser()"
-            class="nav-link"
-            (click)="navigateToUserPanel()"
-            routerLink="/"
-            routerLinkActive=""
-            >Profilo</a
-          >
+          <a *ngIf="checkUser()" class="nav-link" (click)="navigateToUserPanel()" routerLink="/" routerLinkActive="">{{user?.email}}</a>
         </li>
-        
-
-        <div></div>
         <li class="nav-item">
-          <a
-            *ngIf="checkAdmin()"
-            class="nav-link"
-            routerLink="/admin"
-            routerLinkActive="active"
-            >Admin</a
-          >
+          <a *ngIf="checkAdmin()" class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
         </li>
       </ul>
 
+      
+
       <div class="login-register-logout">
-        <a
-          *ngIf="!checkUser()"
-          class="btn btn-outline-dark my-2 my-sm-0 mt-3"
-          routerLink="/login"
-          routerLinkActive="active"
-          >Login</a
-        >
-        <a
-          *ngIf="!checkUser()"
-          class="btn btn-outline-dark my-sm-0 mt-3"
-          routerLink="/register"
-          routerLinkActive="active"
-          >Register</a
-        >
-        <a
-          *ngIf="checkUser()"
-          class="btn btn-danger my-2 my-sm-0 mt-3"
-          (click)="logout()"
-          >Logout <i class="bi bi-box-arrow-left"></i
-        ></a>
+        
+        <button *ngIf="!checkUser()" class="btn btn-outline-dark my-2 my-sm-0 mt-3" (click)="openLoginModal()">Login</button>
+        <button *ngIf="!checkUser()" class="btn btn-outline-dark my-sm-0 mt-3" (click)="openRegisterModal()">Register</button>
+        
+        <button *ngIf="checkUser()" class="btn btn-danger my-2 my-sm-0 mt-3" (click)="logout()">Logout <i class="bi bi-box-arrow-left"></i></button>
       </div>
     </div>
   </div>
-<app-switch-mode></app-switch-mode>
-
+  
 </nav>

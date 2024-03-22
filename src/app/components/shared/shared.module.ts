@@ -6,18 +6,19 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
-import { SwitchModeComponent } from './switch-mode/switch-mode.component';
+import { AuthenticationModule } from "../authentication/authentication.module";
 
 @NgModule({
-  declarations: [MenuComponent, FooterComponent, SwitchModeComponent],
-  imports: [
-    FormsModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    CommonModule,
-    RouterModule,
-  ],
-  exports: [MenuComponent, FooterComponent, SwitchModeComponent],
+    declarations: [MenuComponent, FooterComponent],
+    exports: [MenuComponent, FooterComponent],
+    imports: [
+        FormsModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        CommonModule,
+        RouterModule,
+        AuthenticationModule
+    ]
 })
 export class SharedModule {}

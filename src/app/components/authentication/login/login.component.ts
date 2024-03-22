@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -12,6 +12,8 @@ import {
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  @Output() loginSuccess: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(private authService: AuthService, private router: Router) {}
 
   login(form: NgForm) {
@@ -21,12 +23,10 @@ export class LoginComponent {
     const email = form.value.email;
     const password = form.value.password;
 
-    let authObs: Observable<AuthResponseData>;
-    authObs = this.authService.login(email, password);
+    this.authService.login(email, password).subscribe({
+      next: (resData: AuthResponseData) => {
+        this.loginSuccess.emit();
 
-    authObs.subscribe({
-      next: (resData) => {
-        this.router.navigate(['/']);
       },
       error: (errorMessage) => {
         console.log(errorMessage);
