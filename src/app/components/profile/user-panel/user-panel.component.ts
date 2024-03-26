@@ -7,7 +7,8 @@ import { AuthService } from '../../../../services/auth/auth.service'; // Importa
 import { BookingService } from '../../../../services/booking/booking.service';
 import { BookingDto } from '../../../../model/booking-dto';
 import { RoomsDetailsComponent } from '../../rooms/rooms-details/rooms-details.component';
-
+import { MatDialog, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../../shared/delete-dialog/delete-dialog.component';
 @Component({
   selector: 'app-user-panel',
   templateUrl: './user-panel.component.html',
@@ -30,8 +31,9 @@ export class UserPanelComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal,
     private authService: AuthService,
-    private bookingService: BookingService 
-  ) {}
+    private bookingService: BookingService,
+    public dialog: MatDialog
+      ) {}
 
   ngOnInit(): void {
     const currentUser = this.authService.getUser();
@@ -49,6 +51,20 @@ export class UserPanelComponent implements OnInit {
   
   }
 
+
+
+  openDialog(bookingId: number): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        this.cancelBooking(bookingId);
+      }
+    });
+  }
+  
   loadUserBookings(userId: number) {
     this.bookingService.getAllBookingsByUser(userId).subscribe({
       next: (bookings) => {
@@ -101,7 +117,6 @@ export class UserPanelComponent implements OnInit {
     this.bookingService.cancelBooking(bookingId).subscribe(
         () => {
             this.bookings = this.bookings.filter(booking => booking.bookingId !== bookingId);
-            console.log('Prenotazione cancellata con successo');
         },
         error => {
           alert("Impossibile cancellare. Per informazioni contattare l'host.")

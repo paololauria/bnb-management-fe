@@ -14,10 +14,16 @@
   <mat-card class="right-card">
     <mat-card-content>
       <h3 class="text-center">Informazioni:</h3>
-      <h4>Ospiti: {{ roomDto.roomType }}</h4>
+      <h4>Ospiti: {{ roomDto.maxGuest }}</h4>
       <p>Prezzo per notte: {{ roomDto.pricePerNight }}</p>
       <p>{{ roomDto.description }}</p>
     </mat-card-content>
     <app-calendar [roomId]="roomDto.roomId"></app-calendar>
+    
+    
   </mat-card>
+
+  <div class="reviews-container">
+    <app-rooms-reviews [roomId]="roomDto.roomId"></app-rooms-reviews>
+  </div>
 </div>

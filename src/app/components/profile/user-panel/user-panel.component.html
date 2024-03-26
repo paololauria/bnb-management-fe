@@ -80,9 +80,15 @@
                           <p>{{ booking.checkOutDate }}</p>
                         </div>
                       </div>
-                      <button *ngIf="currentUserID === userDto.id" class="btn btn-danger" (click)="cancelBooking(booking.bookingId)">
-                        Cancella prenotazione
-                    </button>
+                      <div class="d-flex justify-content-center">
+                        <p><i class="bi bi-credit-card" style="color: black;"></i>{{booking.totalPrice}}€
+                        </p></div>
+                      <div class="d-flex justify-content-center">
+
+                        <button *ngIf="currentUserID === userDto.id" mat-raised-button color="accent" (click)="openDialog(booking.bookingId)">Cancella la prenotazione</button>
+
+                      </div>
+                     
         
                       <!-- <p class="ptitle">Prezzo Totale: {{ booking.totalPrice }}</p> -->
                     </div>

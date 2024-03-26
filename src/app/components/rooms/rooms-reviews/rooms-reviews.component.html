@@ -1,0 +1,18 @@
+<div *ngIf="reviewsResult.length > 0">
+   <h2>Recensioni</h2>
+   <div class="review-card" *ngFor="let r of reviewsResult">
+     <mat-card>
+       <mat-card-content>
+         <h4>Username: {{ r.userName }}</h4>
+         <p>Voto: {{ r.rating }}</p>
+         <p>Commento: {{ r.comment }}</p>
+         <p>{{ r.timestamp | date  }}</p>
+       </mat-card-content>
+     </mat-card>
+   </div>
+ </div>
+ 
+ <div *ngIf="reviewsResult.length === 0">
+   <h2>Ancora nessuna recensione</h2>
+ </div>
+ 

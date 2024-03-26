@@ -6,19 +6,20 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
-import { AuthenticationModule } from "../authentication/authentication.module";
+import { AuthenticationModule } from '../authentication/authentication.module';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
-    declarations: [MenuComponent, FooterComponent],
-    exports: [MenuComponent, FooterComponent],
-    imports: [
-        FormsModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        CommonModule,
-        RouterModule,
-        AuthenticationModule
-    ]
+  declarations: [MenuComponent, FooterComponent, DeleteDialogComponent],
+  exports: [MenuComponent, FooterComponent, DeleteDialogComponent],
+  imports: [
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    CommonModule,
+    RouterModule,
+    AuthenticationModule,
+  ],
 })
 export class SharedModule {}

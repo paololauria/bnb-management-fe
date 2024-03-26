@@ -6,6 +6,8 @@ import {
   AuthService,
   AuthResponseData,
 } from '../../../../services/auth/auth.service';
+import { RegisterComponent } from '../register/register.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,8 +15,11 @@ import {
 })
 export class LoginComponent {
   @Output() loginSuccess: EventEmitter<void> = new EventEmitter<void>();
+  returnUrl: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, 
+    private router: Router,
+    private modalService: NgbModal) {}
 
   login(form: NgForm) {
     if (!form.valid) {
@@ -34,5 +39,15 @@ export class LoginComponent {
     });
 
     form.reset();
+  }
+
+  openRegisterModal() {
+    const modalRef = this.modalService.open(RegisterComponent, { centered: true, size: 'lg'});
+    modalRef.componentInstance.registerSuccess.subscribe(() => {
+      modalRef.close(); 
+      if (this.returnUrl && this.returnUrl !== '/') {
+        this.router.navigateByUrl(this.returnUrl);
+      }
+    });
   }
 }

@@ -29,6 +29,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router, private modalService: NgbModal) {}
 
+
+  
   openLoginModal() {
     const modalRef = this.modalService.open(LoginComponent, { centered: true });
     modalRef.componentInstance.loginSuccess.subscribe(() => {
@@ -135,7 +137,8 @@ export class AuthService {
       expirationDate,
       user.firstname,
       user.lastname,
-      user.role
+      user.role,
+      user.image
     );
     console.log('sto per pubblicare lo user');
     console.log(newUser);

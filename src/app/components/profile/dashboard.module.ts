@@ -6,7 +6,7 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../../material/material.module';
 
-const dashboardRoutes: Routes = [
+const profileRoutes: Routes = [
   { path: 'user/:userId', component: UserPanelComponent },
 ];
 
@@ -20,10 +20,10 @@ const dashboardRoutes: Routes = [
     HttpClientModule,
     CommonModule,
     MaterialModule,
-    RouterModule.forChild(dashboardRoutes),
+    RouterModule.forChild(profileRoutes),
   ],
   exports: [
     UserPanelComponent
   ],
 })
-export class DashboardModule {}
+export class ProfileModule {}

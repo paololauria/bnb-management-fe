@@ -3,18 +3,17 @@ import { RoomsService } from '../../../../services/rooms/rooms.service';
 import { ActivatedRoute } from '@angular/router';
 import { RoomsDto } from '../../../../model/rooms-dto';
 import { AuthService } from '../../../../services/auth/auth.service';
-import { UserDto } from '../../../../model/user-dto';
 import { User } from '../../../../model/user';
 
 @Component({
   selector: 'app-rooms-details',
   templateUrl: './rooms-details.component.html',
-  styleUrl: './rooms-details.component.css'
+  styleUrls: ['./rooms-details.component.css']
 })
 export class RoomsDetailsComponent implements OnInit {
   roomDto!: RoomsDto;
   user!: User | null;
-
+  
 
   constructor(
     private roomsService: RoomsService,
@@ -26,7 +25,6 @@ export class RoomsDetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       const roomId = +params['roomId'];
       this.loadRoomDetails(roomId);
-
     });
   }
 
@@ -43,5 +41,4 @@ export class RoomsDetailsComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
-
 }

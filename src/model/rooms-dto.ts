@@ -1,9 +1,11 @@
 export interface RoomsDto {
    roomId: number;
    roomName: string;
-   roomType: string;
+   maxGuest: number;
    pricePerNight: number;
    roomCover: string;
-   description: string
+   description: string,
+   averageRating: number;
+   location: string;
  }
  

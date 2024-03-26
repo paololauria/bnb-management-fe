@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserDto } from '../../model/user-dto';
 
 @Injectable({
@@ -8,8 +8,8 @@ import { UserDto } from '../../model/user-dto';
 })
 export class UserService {
   private baseUrl = 'http://localhost:8080/api/user';
-
-  constructor(private http: HttpClient) {}
+ 
+    constructor(private http: HttpClient) {}
 
   getAllUser(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(`${this.baseUrl}/all`);

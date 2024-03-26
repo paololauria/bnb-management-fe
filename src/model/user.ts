@@ -6,7 +6,8 @@ export class User {
     private _tokenExpirationDate: Date,
     public firstname: string,
     public lastname: string,
-    public role: string
+    public role: string,
+    public image: string
   ) {}
 
   static fromJSON(json: string) {
@@ -18,7 +19,8 @@ export class User {
       obj._tokenExpirationDate,
       obj.firstname,
       obj.lastname,
-      obj.role
+      obj.role,
+      obj.image
     );
   }
 

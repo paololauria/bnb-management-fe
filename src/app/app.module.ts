@@ -8,20 +8,19 @@ import { AuthenticationModule } from './components/authentication/authentication
 import { AuthInterceptorService } from '../services/auth/auth-interceptor.service';
 import { HomeModule } from './components/home/home.module';
 import { SharedModule } from './components/shared/shared.module';
-import { RoomsComponent } from './components/rooms/rooms.component';
 import { RoomsModule } from './components/rooms/rooms.module';
-import { DashboardModule } from './components/dashboard/dashboard.module';
+import { ProfileModule } from './components/profile/dashboard.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './material/material.module';
-import { FaqComponent } from './components/home/faq/faq.component';
-import { ImagesRoomPreviewComponent } from './components/rooms/images-room-preview/images-room-preview.component';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-      ],
+    AppComponent
+        ],
   imports: [
     BrowserModule,
     MaterialModule,
@@ -32,9 +31,10 @@ import { ImagesRoomPreviewComponent } from './components/rooms/images-room-previ
     AuthenticationModule,
     HomeModule,
     RoomsModule,
-    DashboardModule,
+    ProfileModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    MatNativeDateModule
   ],
   providers: [ 
     {

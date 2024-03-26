@@ -1,0 +1,11 @@
+<h3>Riepilogo Prenotazione</h3>
+<ul>
+  <li>Stanza: {{ bookingRequest.roomId }}</li>
+  <li>Data di check-in: {{ bookingRequest.checkInDate | date }}</li>
+  <li>Data di check-out: {{ bookingRequest.checkOutDate | date }}</li>
+  <li>Prezzo totale: {{ bookingRequest.totalPrice }}</li>
+</ul>
+
+<p>Confermi la prenotazione?</p>
+
+
