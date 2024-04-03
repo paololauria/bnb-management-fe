@@ -13,6 +13,9 @@ import { ProfileModule } from './components/profile/dashboard.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './material/material.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { SearchBarComponent } from './components/shared/search-bar/search-bar.component';
+import { ListRoomsAvailableComponent } from './components/shared/list-rooms-available/list-rooms-available.component';
+import { BookingSummaryComponent } from './components/rooms/booking-summary/booking-summary.component';
 
 
 
@@ -20,7 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent
-        ],
+          ],
   imports: [
     BrowserModule,
     MaterialModule,

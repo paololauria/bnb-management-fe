@@ -25,4 +25,8 @@ export class RoomsService {
     return this.http.get<ReviewDto[]>(`${this.baseUrl}/${roomId}/review`);
   }
 
+  searchAvailableRooms(checkInDate: string, checkOutDate: string, maxGuests: number): Observable<RoomsDto[]> {
+    return this.http.get<RoomsDto[]>(`${this.baseUrl}/available?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&maxGuests=${maxGuests}`);
+  }
+
 }

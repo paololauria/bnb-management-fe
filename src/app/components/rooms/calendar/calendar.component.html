@@ -14,14 +14,14 @@
 	<mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
  </mat-form-field>
  
- <p>Prezzo {{ bookingRequest.totalPrice}}</p>
  
  <div *ngIf="bookingRequest">
 	<div *ngIf="bookingDate.valid">
-	  <app-confirm-booking [bookingRequest]="bookingRequest"></app-confirm-booking>
-	  <div class="d-flex justify-content-center mt-3">
-		 <button mat-raised-button color="accent" (click)="makeBooking()">Conferma e paga</button>
-	  </div>
-	</div>
+		<div *ngIf="showConfirmBooking">
+			<app-confirm-booking [bookingRequest]="bookingRequest" (confirmBookingEvent)="confirmBookingFromChild()"></app-confirm-booking>
+		</div>
  </div>
+ 
+ 
+ 
  

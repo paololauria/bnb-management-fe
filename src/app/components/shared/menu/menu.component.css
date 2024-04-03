@@ -1,52 +1,23 @@
-* {
-  font-family: "Protest Strike", sans-serif;
+@media screen and (max-width: 600px) {
+  .navigation-links {
+    display: none; /* Nascondi i link di navigazione */
+  }
+
+  .user-menu {
+    display: none; /* Nascondi il menu dell'utente */
+  }
+
+  .menu-icon {
+    display: block; /* Mostra l'icona del menu */
+  }
 }
 
-.custom-navbar .navbar-brand {
-  font-size: 24px;
-}
-
-.custom-navbar .nav-link {
-  font-size: 18px;
-}
-
-.custom-navbar .btn {
-  font-size: 18px;
-}
-
-.custom-navbar .navbar-brand {
-  font-size: 34px;
-}
-
-.custom-navbar .nav-link {
-  font-size: 25px;
-}
-
-.custom-navbar .btn {
-  font-size: 25px;
+@media screen and (min-width: 601px) {
+  .menu-icon {
+    display: none; /* Nascondi l'icona del menu */
+  }
 }
 
 a {
-  margin: 5px;
-}
-
-
- .toolbar-item-spacer {
-  flex: 1 1 auto;
-}
-
-.app-container {
-  height: 90%;
-  margin: 0;
-}
-
-.app-sidenav {
-  width: 230px;
-}
-
-.app-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  font-size: 1.3rem;
 }

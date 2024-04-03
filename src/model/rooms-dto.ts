@@ -1,3 +1,5 @@
+import { AmenitiesDto } from "./amenities-dto";
+
 export interface RoomsDto {
    roomId: number;
    roomName: string;
@@ -7,5 +9,6 @@ export interface RoomsDto {
    description: string,
    averageRating: number;
    location: string;
+   amenities: AmenitiesDto[];
  }
  

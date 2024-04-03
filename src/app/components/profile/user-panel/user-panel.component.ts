@@ -6,8 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../../../services/auth/auth.service'; // Importa AuthService
 import { BookingService } from '../../../../services/booking/booking.service';
 import { BookingDto } from '../../../../model/booking-dto';
-import { RoomsDetailsComponent } from '../../rooms/rooms-details/rooms-details.component';
-import { MatDialog, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../../shared/delete-dialog/delete-dialog.component';
 @Component({
   selector: 'app-user-panel',
@@ -50,8 +49,6 @@ export class UserPanelComponent implements OnInit {
     this.predefinedImageKeys = Object.keys(this.predefinedImages);
   
   }
-
-
 
   openDialog(bookingId: number): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {

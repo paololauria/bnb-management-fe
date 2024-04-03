@@ -1,0 +1,26 @@
+.review-card {
+   margin-bottom: 20px;
+ }
+ 
+ .review-container {
+   display: flex;
+   overflow-x: auto;
+   white-space: nowrap;
+   margin-top: 20px;
+   margin-bottom: 20px;
+ }
+ 
+ .review-form-card {
+   flex: 0 0 auto;
+   margin-right: 10px;
+ }
+
+ mat-form-field,
+ button[type="submit"] {
+   width: 100%;
+ }
+ 
+ button[type="submit"] {
+   width: 100%;
+ }
+ 

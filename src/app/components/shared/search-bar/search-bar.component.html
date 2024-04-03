@@ -1,0 +1,23 @@
+<div class="form-container">
+  <mat-form-field class="small-form-field">
+    <mat-label>Check-in Date</mat-label>
+    <input matInput [matDatepicker]="picker1" [(ngModel)]="bookingRequest.checkInDate" [min]="minDate">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field class="small-form-field">
+    <mat-label>Check-out Date</mat-label>
+    <input matInput [matDatepicker]="picker2" [(ngModel)]="bookingRequest.checkOutDate" [min]="bookingRequest.checkInDate || minDate">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field class="small-form-field">
+    <mat-label>Max Guests</mat-label>
+    <input matInput type="number" [(ngModel)]="maxGuests">
+  </mat-form-field>
+  
+  <button mat-raised-button color="accent" (click)="searchRooms()">Search</button>
+</div>
+<app-list-rooms-available [availableRooms]="availableRooms" [bookingRequest]="bookingRequest"></app-list-rooms-available>

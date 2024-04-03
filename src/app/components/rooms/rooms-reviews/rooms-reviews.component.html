@@ -1,18 +1,41 @@
-<div *ngIf="reviewsResult.length > 0">
-   <h2>Recensioni</h2>
-   <div class="review-card" *ngFor="let r of reviewsResult">
-     <mat-card>
-       <mat-card-content>
-         <h4>Username: {{ r.userName }}</h4>
-         <p>Voto: {{ r.rating }}</p>
-         <p>Commento: {{ r.comment }}</p>
-         <p>{{ r.timestamp | date  }}</p>
-       </mat-card-content>
-     </mat-card>
-   </div>
- </div>
- 
- <div *ngIf="reviewsResult.length === 0">
-   <h2>Ancora nessuna recensione</h2>
- </div>
- 
+<div class="text-center mb-4">
+  <h2>Recensioni</h2>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="!reviewsResult || reviewsResult.length === 0">
+  <i>Ancora nessuna recensione</i>
+</div>
+
+<div *ngIf="reviewsResult && reviewsResult.length > 0" class="review-container">
+  <div class="review-form-card" *ngFor="let r of reviewsResult">
+    <mat-card class="review-card">
+      <mat-card-content>
+        <h4>Username: {{ r.userName }}</h4>
+        <p>Voto: {{ r.rating }}</p>
+        <p>Commento: {{ r.comment }}</p>
+        <p>{{ r.timestamp | date }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<mat-card *ngIf="isLoggedIn" class="review-form-card">
+  <mat-card-content>
+    <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
+      <mat-form-field appearance="fill">
+        <mat-label>Scrivi una recensione</mat-label>
+        <textarea matInput formControlName="comment" required></textarea>
+        <mat-error *ngIf="reviewForm.get('comment')?.hasError('required')">Il campo commento è obbligatorio.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Votazione (1-10)</mat-label>
+        <input matInput type="number" min="1" max="10" formControlName="rating" required>
+        <mat-error *ngIf="reviewForm.get('rating')?.hasError('required')">La votazione è obbligatoria (da 1 a 10).</mat-error>
+        <mat-error *ngIf="reviewForm.get('rating')?.hasError('min') || reviewForm.get('rating')?.hasError('max')">La votazione deve essere compresa tra 1 e 10.</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" type="submit" [disabled]="!reviewForm.valid">Aggiungi recensione</button>
+    </form>
+  </mat-card-content>
+</mat-card>

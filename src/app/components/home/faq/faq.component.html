@@ -1,25 +1,64 @@
-<mat-accordion>
+<div class="container">
+<mat-accordion class="faq-accordion">
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        This is the expansion title
+        🏠 Chi siamo
       </mat-panel-title>
       <mat-panel-description>
-        This is a summary of the content
+        Scopri di più su di noi
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>This is the primary content of the panel.</p>
+    <p>Siamo un team appassionato che offre un servizio di prenotazione online per le tue vacanze. Con anni di esperienza nel settore, ci impegniamo a fornire un'esperienza senza problemi per pianificare e prenotare le tue prossime avventure.</p>
   </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Self aware panel
+        📅 Come funziona
       </mat-panel-title>
       <mat-panel-description>
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        Scopri come prenotare con noi
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+    <p>È semplice prenotare con noi! Basta navigare sul nostro sito, scegliere la destinazione e le date desiderate, e selezionare tra una varietà di opzioni di alloggio e attività. Una volta confermata la prenotazione, riceverai tutti i dettagli necessari per il tuo viaggio. Il nostro team è sempre disponibile per assisterti in ogni fase del processo.</p>
   </mat-expansion-panel>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          🙋‍♀️Domande frequenti
+        </mat-panel-title>
+        <mat-panel-description>
+          Trova risposte alle tue domande
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Hai domande? Consulta le nostre domande frequenti per trovare risposte su prenotazioni, pagamenti, politiche di cancellazione e altro ancora.</p>
+    </mat-expansion-panel>
+    
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          💌 Contattaci
+        </mat-panel-title>
+        <mat-panel-description>
+          Come mettersi in contatto con noi
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Hai bisogno di assistenza? Contattaci tramite telefono, email o compilando il modulo di contatto sul nostro sito. Il nostro team sarà felice di aiutarti con qualsiasi domanda o richiesta tu abbia.</p>
+    </mat-expansion-panel>
+    
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ✂️ Politiche di cancellazione
+        </mat-panel-title>
+        <mat-panel-description>
+          Leggi le nostre politiche di cancellazione
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>È importante conoscere le nostre politiche di cancellazione prima di prenotare. Scopri i termini e le condizioni relativi alle cancellazioni e ai rimborsi per assicurarti di essere informato in caso di eventualità.</p>
+    </mat-expansion-panel>
+
+  
 </mat-accordion>
+
+</div>

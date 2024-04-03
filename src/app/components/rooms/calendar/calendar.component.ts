@@ -14,25 +14,28 @@ import { RoomsDto } from '../../../../model/rooms-dto';
   styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent {
-
   @Input() roomId: number = 2;
   @Input() roomDto: RoomsDto | null = null;
 
   bookingRequest: BookingDto = {
+    roomName: '',
     roomId: this.roomId,
     userId: null,
     checkInDate: new Date(),
     checkOutDate: new Date(),
     totalPrice: 0,
     roomCover: '',
-    bookingId: 0
+    bookingId: 0,
+    maxGuestRoom: 0
   };
   bookingDate!: FormGroup;
   bookedDates: RoomAvailabilityDto[] = [];
-  showBookingForm: boolean = true;
+  showConfirmBooking: boolean = false;
 
 
-  constructor(private router: Router, private bookingService: BookingService, private authService: AuthService) {}
+  constructor(private router: Router,
+     private bookingService: BookingService,
+      private authService: AuthService) {}
 
   ngOnInit() {
     this.bookingDate = new FormGroup({
@@ -46,7 +49,13 @@ export class CalendarComponent {
       this.calculateTotalPrice();
       this.bookingRequest.checkInDate = this.bookingDate.value.start;
       this.bookingRequest.checkOutDate = this.bookingDate.value.end;
+
+      this.showConfirmBooking = this.bookingDate.valid;
     });
+  }
+
+  confirmBookingFromChild() {
+    this.makeBooking();
   }
 
   setUserIdFromAuth() {
@@ -54,7 +63,7 @@ export class CalendarComponent {
     if (user) {
       this.bookingRequest.userId = user.id;
     } else {
-      console.error('Utente non autenticato');
+      console.log('Utente non autenticato');
     }
   }
 
@@ -83,11 +92,10 @@ export class CalendarComponent {
     if (this.bookingRequest.userId !== null && this.bookingDate.valid) { 
       this.bookingRequest.checkInDate = this.bookingDate.value.start;
       this.bookingRequest.checkOutDate = this.bookingDate.value.end;
-
+  
       this.bookingService.makeBooking(this.bookingRequest).subscribe(
         (response) => {
-          alert("Prenotazione effettuata con successo dal giorno " + this.bookingRequest.checkInDate + " al giorno " + this.bookingRequest.checkOutDate + "! Al prezzo totale di " + this.bookingRequest.totalPrice + "😁")
-          console.log('Prenotazione effettuata con successo', response);
+          this.router.navigate(['conferma-prenotazione', response.bookingId]);
         },
         (error) => {
           alert("Non è possibile prenotare date passate o già prenotate! Riprova con date valide")
@@ -95,10 +103,11 @@ export class CalendarComponent {
         }
       );
     } else {
-      console.error('Impossibile effettuare la prenotazione. Utente non autenticato.');
+      console.error('Impossibile effettuare la prenotazione. Utente non autenticato o dati di prenotazione non validi.');
       this.authService.openLoginModal();
     }
   }
+  
 
   dateRangeValidator(minDate: Date, maxDate: Date) {
     return (control: AbstractControl<any, any>) => {
@@ -112,11 +121,18 @@ export class CalendarComponent {
 
   calculateTotalPrice() {
     const selectedDates = this.bookingDate.value;
+
     if (selectedDates && selectedDates.start && selectedDates.end && this.roomDto) {
+      
       const nights = Math.ceil((selectedDates.end.getTime() - selectedDates.start.getTime()) / (1000 * 60 * 60 * 24));
+
       this.bookingRequest.totalPrice = nights * this.roomDto.pricePerNight;
+
     } else {
+
       this.bookingRequest.totalPrice = 0;
+
     }
   }
+  
 }

@@ -1,11 +1,26 @@
-<h3>Riepilogo Prenotazione</h3>
-<ul>
-  <li>Stanza: {{ bookingRequest.roomId }}</li>
-  <li>Data di check-in: {{ bookingRequest.checkInDate | date }}</li>
-  <li>Data di check-out: {{ bookingRequest.checkOutDate | date }}</li>
-  <li>Prezzo totale: {{ bookingRequest.totalPrice }}</li>
-</ul>
 
-<p>Confermi la prenotazione?</p>
+<h1>Riepilogo viaggio: </h1>
+<p>🛫 Data di check-in: {{ bookingRequest.checkInDate | date }}</p>
+<p>  🛬 Data di check-out: {{ bookingRequest.checkOutDate | date }}
+</p>
+<p>  💰 Prezzo totale: {{ bookingRequest.totalPrice }}€</p>
+
+  
 
 
+<p>Paga sicuro con Google Pay o Apple Pay. 🔒</p>
+<div class="payPal">
+  
+  <div class="responsivePayPal">
+    <button mat-raised-button color="">
+    <img src="https://aido.it/wp-content/uploads/2023/06/Apple_Pay_Google_Pay.png" alt="" (click)="confirmBooking()" />
+  </button>
+
+  </div>
+
+    <div class="confirm">
+      <mat-spinner *ngIf="showSpinner"></mat-spinner>
+    </div>
+  
+    
+  

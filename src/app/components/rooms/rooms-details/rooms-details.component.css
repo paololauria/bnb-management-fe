@@ -1,26 +1,30 @@
 .card-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
-.left-card, .right-card {
-  width: calc(50% - 20px);
-  margin: 20px;
+.left-card, .right-card, .reviews-container{
+  width: calc(100% - 20px); 
+  margin: 10px;
+  background-color: white; 
+  border-radius: 8px; 
 }
 
-.card-body {
-  padding: 20px;
+@media screen and (min-width: 600px) {
+  .left-card, .right-card {
+    width: calc(50% - 20px); 
+  }
 }
 
-h2 {
+.card-container h2 {
   font-size: 2rem;
-  font-family: "Protest Strike", sans-serif;
   margin-bottom: 10px;
 }
 
 .image-container {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .room-image {
@@ -43,14 +47,4 @@ h2 {
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
-  .left-card, .right-card {
-    width: calc(50% - 40px);
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .card-container {
-    flex-direction: column;
-  }
-}

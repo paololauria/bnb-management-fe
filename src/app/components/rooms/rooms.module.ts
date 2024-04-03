@@ -6,25 +6,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoomsComponent } from './rooms.component';
 import { RoomsDetailsComponent } from './rooms-details/rooms-details.component';
 import { MaterialModule } from '../../material/material.module';
-import { ImagesRoomPreviewComponent } from './images-room-preview/images-room-preview.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ConfirmBookingComponent } from './confirm-booking/confirm-booking.component';
 import { RoomsReviewsComponent } from './rooms-reviews/rooms-reviews.component';
+import { BookingSummaryComponent } from './booking-summary/booking-summary.component';
 
 const roomsRoutes: Routes = [
   { path: 'camere', component: RoomsComponent },
   { path: 'camere/:roomId', component: RoomsDetailsComponent },
   { path: 'camere/:roomId/booking', component: ConfirmBookingComponent },
+  { path: 'conferma-prenotazione/:bookingId', component: BookingSummaryComponent }
 ];
 
   @NgModule({
     declarations: [
       RoomsComponent,
       RoomsDetailsComponent,
-      ImagesRoomPreviewComponent,
       CalendarComponent,
       ConfirmBookingComponent,
-      RoomsReviewsComponent
+      RoomsReviewsComponent,
+      BookingSummaryComponent
       
     ],
     imports: [
@@ -38,10 +39,10 @@ const roomsRoutes: Routes = [
     exports: [
       RoomsComponent,
       RoomsDetailsComponent,
-      ImagesRoomPreviewComponent,
       CalendarComponent,
       ConfirmBookingComponent,
-      RoomsReviewsComponent
+      RoomsReviewsComponent,
+      BookingSummaryComponent
     ],
   })
   export class RoomsModule {}

@@ -1,29 +1,37 @@
 <div *ngIf="roomDto" class="card-container">
-  <!-- Card a sinistra -->
-  <mat-card class="left-card">
-    <mat-card-content>
-      <h2>{{ roomDto.roomName }}</h2>
-      <div class="image-container">
-        <img [src]="roomDto.roomCover" alt="Room Cover Image" class="room-image" />
-      </div>
-      <p><strong>Descrizione: </strong>{{ roomDto.description }}</p>
-    </mat-card-content>
-  </mat-card>
+  <div class="left-card">
+    <mat-card>
+      <mat-card-content>
+        <h2>{{ roomDto.roomName }}</h2>
+        <p>📍 {{ roomDto.location }}</p>
+        <p>⭐️ {{ roomDto.averageRating }}</p>
+        <div class="image-container">
+          <img [src]="roomDto.roomCover" alt="Room Cover Image" class="room-image" />
+        </div>
+        <p>🛏️ {{ roomDto.maxGuest }} ospiti ・ 😴 1 camera da letto ・ 🚽 1 bagno ・ 🥘 1 cucina</p>
+        <p>{{ roomDto.description }}</p>
+        <ul>
+          <li *ngFor="let amenity of roomDto.amenities">{{ amenity.amenityName }} {{amenity.amenityImage}}</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
-  <!-- Card a destra -->
-  <mat-card class="right-card">
-    <mat-card-content>
-      <h3 class="text-center">Informazioni:</h3>
-      <h4>Ospiti: {{ roomDto.maxGuest }}</h4>
-      <p>Prezzo per notte: {{ roomDto.pricePerNight }}</p>
-      <p>{{ roomDto.description }}</p>
-    </mat-card-content>
-    <app-calendar [roomId]="roomDto.roomId"></app-calendar>
-    
-    
-  </mat-card>
-
-  <div class="reviews-container">
+  <div class="right-card">
+    <mat-card>
+      <mat-card-content>
+        <h1>💸 {{ roomDto.pricePerNight }}€ <span>a notte</span></h1>
+        <app-calendar [roomId]="roomDto.roomId" [roomDto]="roomDto"></app-calendar>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="right-card">
+    <mat-card>
+      <mat-card-content>
     <app-rooms-reviews [roomId]="roomDto.roomId"></app-rooms-reviews>
+  </mat-card-content>
+  </mat-card>
   </div>
 </div>
+
+

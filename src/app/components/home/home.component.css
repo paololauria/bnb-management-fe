@@ -1,2 +1,36 @@
-mat-grid-tile {
+.container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
  }
+
+ .cover-image {
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center image horizontally */
+  align-items: center; /* Center image vertically */
+}
+
+
+ .home-card,
+ .faq-accordion,
+ .search-card{
+   width: 80%;
+   max-width: 800px;
+   margin-bottom: 20px;
+   margin-top: 20px;
+ }
+ 
+ @media screen and (max-width: 600px) {
+   .home-card,
+   .faq-accordion {
+     width: 100%;
+   }
+ }
+ .button-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; 
+  margin-bottom: 10px;
+}

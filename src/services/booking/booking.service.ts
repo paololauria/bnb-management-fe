@@ -26,4 +26,7 @@ export class BookingService {
 cancelBooking(bookingId: number): Observable<void> {
   return this.http.post<void>(`${this.baseUrl}/cancel/${bookingId}`, null);
 }
+getBookingById(bookingId: number): Observable<BookingDto> {
+  return this.http.get<BookingDto>(`${this.baseUrl}/${bookingId}`);
+}
 }

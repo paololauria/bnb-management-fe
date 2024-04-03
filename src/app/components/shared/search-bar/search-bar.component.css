@@ -1,0 +1,13 @@
+.form-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+   margin-top: 20px;
+ }
+ 
+ .small-form-field {
+   width: 200px;
+   margin: 0 10px;
+ }
+ 

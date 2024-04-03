@@ -26,6 +26,7 @@ export class RoomsDetailsComponent implements OnInit {
       const roomId = +params['roomId'];
       this.loadRoomDetails(roomId);
     });
+
   }
 
   checkUser(): boolean {

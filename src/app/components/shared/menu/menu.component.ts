@@ -7,6 +7,7 @@ import { RegisterComponent } from '../../authentication/register/register.compon
 import { User } from '../../../../model/user';
 import { UserService } from '../../../../services/user/user.service';
 import { UserDto } from '../../../../model/user-dto';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-menu',
@@ -16,13 +17,14 @@ import { UserDto } from '../../../../model/user-dto';
 export class MenuComponent implements OnInit {
   user: User | null = null;
   returnUrl: string = ''; 
+  
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalService: NgbModal,
-      ) {}
+    private modalService: NgbModal
+          ) {}
 
   ngOnInit(): void {
   
@@ -34,7 +36,6 @@ export class MenuComponent implements OnInit {
     });
     
   }
-  
 
 
   checkAdmin(): boolean {
