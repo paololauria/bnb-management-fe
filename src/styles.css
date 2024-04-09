@@ -1,8 +1,20 @@
 @font-face {
-   font-family: 'BnB';
-   src: url('assets/fonts/airbnb-cereal-font/AirbnbCereal_W_Lt.otf') format('truetype');
- }
- 
- * {
-   font-family: 'BnB', sans-serif; 
- }
+  font-family: "BnB";
+  src: url("assets/fonts/airbnb-cereal-font/AirbnbCereal_W_Lt.otf")
+    format("truetype");
+}
+
+* {
+  font-family: "BnB", sans-serif;
+}
+
+.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-mode .navbar {
+  background-color: #222;
+  color: #fff;
+}
+

@@ -3,22 +3,38 @@
     <h2 class="text-center">Tutte le camere</h2>
     <div class="col-12">
       <div class="d-flex flex-wrap justify-content-center">
-        
-        <mat-card class="card mb-3 mx-2" *ngFor="let room of allRooms" style="max-width: 450px;">
-
+        <mat-card
+          class="card mb-3 mx-2"
+          *ngFor="let room of allRooms"
+          style="max-width: 450px"
+        >
           <img mat-card-image [src]="room.roomCover" alt="" />
           <mat-card-content>
-            <div class="d-flex justify-content-center"><h1 class="card-title">{{ room.roomName }} </h1></div>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <ul class="list-group list-group-flush">              
+            <div class="d-flex justify-content-center">
+              <h1 class="card-title">{{ room.roomName }}</h1>
+            </div>
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <ul class="list-group list-group-flush">
               <li class="list-group-item">📍 {{ room.location }}</li>
               <li class="list-group-item">🛏️ {{ room.maxGuest }} ospiti</li>
-              <li class="list-group-item">🫰 {{ room.pricePerNight }}€ a notte</li>
+              <li class="list-group-item">
+                🫰 {{ room.pricePerNight }}€ a notte
+              </li>
               <li class="list-group-item">⭐️ {{ room.averageRating }}</li>
             </ul>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="accent" (click)="navigateToRoomDetails(room.roomId)" routerLink="/">Maggiori dettagli</button>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="navigateToRoomDetails(room.roomId)"
+              routerLink="/"
+            >
+              Maggiori dettagli
+            </button>
           </mat-card-actions>
         </mat-card>
       </div>

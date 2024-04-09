@@ -1,27 +1,29 @@
 <mat-form-field class="example-form-field">
-	<mat-label>Seleziona le date</mat-label>
-	<mat-date-range-input
-	  [formGroup]="bookingDate"
-	  [rangePicker]="campaignOnePicker"
-	  [dateFilter]="dateFilter"
-	>
-	  <input matStartDate placeholder="Check-in" formControlName="start">
-	  <input matEndDate placeholder="Check-out" formControlName="end">
-	</mat-date-range-input>
-	
-	<mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-	<mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
-	<mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
- </mat-form-field>
- 
- 
- <div *ngIf="bookingRequest">
-	<div *ngIf="bookingDate.valid">
-		<div *ngIf="showConfirmBooking">
-			<app-confirm-booking [bookingRequest]="bookingRequest" (confirmBookingEvent)="confirmBookingFromChild()"></app-confirm-booking>
-		</div>
- </div>
- 
- 
- 
- 
+  <mat-label>Seleziona le date</mat-label>
+  <mat-date-range-input
+    [formGroup]="bookingDate"
+    [rangePicker]="campaignOnePicker"
+    [dateFilter]="dateFilter"
+  >
+    <input matStartDate placeholder="Check-in" formControlName="start" />
+    <input matEndDate placeholder="Check-out" formControlName="end" />
+  </mat-date-range-input>
+
+  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle
+    matIconSuffix
+    [for]="campaignOnePicker"
+  ></mat-datepicker-toggle>
+  <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+</mat-form-field>
+
+<div *ngIf="bookingRequest">
+  <div *ngIf="bookingDate.valid">
+    <div *ngIf="showConfirmBooking">
+      <app-confirm-booking
+        [bookingRequest]="bookingRequest"
+        (confirmBookingEvent)="confirmBookingFromChild()"
+      ></app-confirm-booking>
+    </div>
+  </div>
+</div>

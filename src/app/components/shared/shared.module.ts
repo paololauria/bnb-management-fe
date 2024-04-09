@@ -12,8 +12,20 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ListRoomsAvailableComponent } from './list-rooms-available/list-rooms-available.component';
 
 @NgModule({
-  declarations: [MenuComponent, FooterComponent, DeleteDialogComponent, SearchBarComponent, ListRoomsAvailableComponent],
-  exports: [MenuComponent, FooterComponent, DeleteDialogComponent, SearchBarComponent, ListRoomsAvailableComponent],
+  declarations: [
+    MenuComponent,
+    FooterComponent,
+    DeleteDialogComponent,
+    SearchBarComponent,
+    ListRoomsAvailableComponent,
+  ],
+  exports: [
+    MenuComponent,
+    FooterComponent,
+    DeleteDialogComponent,
+    SearchBarComponent,
+    ListRoomsAvailableComponent,
+  ],
   imports: [
     FormsModule,
     MaterialModule,

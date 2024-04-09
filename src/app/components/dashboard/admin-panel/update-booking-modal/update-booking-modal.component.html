@@ -1,0 +1,33 @@
+<h2>Modifica Prenotazione</h2>
+
+<form [formGroup]="updateBookingForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Check-in Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="checkInPicker"
+      formControlName="checkInDate"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="checkInPicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #checkInPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Check-out Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="checkOutPicker"
+      formControlName="checkOutDate"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="checkOutPicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #checkOutPicker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Aggiorna</button>
+</form>

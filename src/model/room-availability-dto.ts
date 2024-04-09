@@ -1,6 +1,5 @@
 export interface RoomAvailabilityDto {
-   roomId: number;
-   checkInDate: Date;
-   checkOutDate: Date;
- }
- 
+  roomId: number;
+  checkInDate: Date;
+  checkOutDate: Date;
+}

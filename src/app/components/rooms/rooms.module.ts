@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RoomsComponent } from './rooms.component';
 import { RoomsDetailsComponent } from './rooms-details/rooms-details.component';
@@ -15,34 +15,36 @@ const roomsRoutes: Routes = [
   { path: 'camere', component: RoomsComponent },
   { path: 'camere/:roomId', component: RoomsDetailsComponent },
   { path: 'camere/:roomId/booking', component: ConfirmBookingComponent },
-  { path: 'conferma-prenotazione/:bookingId', component: BookingSummaryComponent }
+  {
+    path: 'conferma-prenotazione/:bookingId',
+    component: BookingSummaryComponent,
+  },
 ];
 
-  @NgModule({
-    declarations: [
-      RoomsComponent,
-      RoomsDetailsComponent,
-      CalendarComponent,
-      ConfirmBookingComponent,
-      RoomsReviewsComponent,
-      BookingSummaryComponent
-      
-    ],
-    imports: [
-      MaterialModule,
-      FormsModule,
-      ReactiveFormsModule,
-      HttpClientModule,
-      CommonModule,
-      RouterModule.forChild(roomsRoutes),
-    ],
-    exports: [
-      RoomsComponent,
-      RoomsDetailsComponent,
-      CalendarComponent,
-      ConfirmBookingComponent,
-      RoomsReviewsComponent,
-      BookingSummaryComponent
-    ],
-  })
-  export class RoomsModule {}
+@NgModule({
+  declarations: [
+    RoomsComponent,
+    RoomsDetailsComponent,
+    CalendarComponent,
+    ConfirmBookingComponent,
+    RoomsReviewsComponent,
+    BookingSummaryComponent,
+  ],
+  imports: [
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    CommonModule,
+    RouterModule.forChild(roomsRoutes),
+  ],
+  exports: [
+    RoomsComponent,
+    RoomsDetailsComponent,
+    CalendarComponent,
+    ConfirmBookingComponent,
+    RoomsReviewsComponent,
+    BookingSummaryComponent,
+  ],
+})
+export class RoomsModule {}

@@ -7,12 +7,7 @@ import { MaterialModule } from '../../material/material.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MaterialModule
-  ],
+  imports: [FormsModule, ReactiveFormsModule, HttpClientModule, MaterialModule],
   exports: [LoginComponent, RegisterComponent],
 })
 export class AuthenticationModule {}

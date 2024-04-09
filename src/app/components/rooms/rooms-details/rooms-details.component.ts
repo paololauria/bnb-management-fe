@@ -8,12 +8,11 @@ import { User } from '../../../../model/user';
 @Component({
   selector: 'app-rooms-details',
   templateUrl: './rooms-details.component.html',
-  styleUrls: ['./rooms-details.component.css']
+  styleUrls: ['./rooms-details.component.css'],
 })
 export class RoomsDetailsComponent implements OnInit {
-  roomDto!: RoomsDto;
-  user!: User | null;
-  
+  roomDto!: RoomsDto; 
+  user!: User | null; 
 
   constructor(
     private roomsService: RoomsService,
@@ -22,22 +21,24 @@ export class RoomsDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Recupera l'ID della stanza dai parametri dell'URL e carica i dettagli della stanza corrispondente
     this.route.params.subscribe((params) => {
       const roomId = +params['roomId'];
       this.loadRoomDetails(roomId);
     });
-
   }
 
+  // Controlla se l'utente è autenticato
   checkUser(): boolean {
-    this.user = this.authService.checkStatus();
-    return this.user !== null;
+    this.user = this.authService.checkStatus(); // Verifica lo stato dell'utente tramite il servizio di autenticazione
+    return this.user !== null; // Restituisce true se l'utente è autenticato, altrimenti false
   }
 
+  // Carica i dettagli della stanza utilizzando il servizio di stanze
   loadRoomDetails(roomId: number) {
     this.roomsService.getRoomById(roomId).subscribe({
-      next: (r) => {
-        this.roomDto = r;
+      next: (room) => {
+        this.roomDto = room; // Imposta i dettagli della stanza
       },
       error: (err) => console.log(err),
     });

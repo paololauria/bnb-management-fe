@@ -1,26 +1,25 @@
-
-<h1>Riepilogo viaggio: </h1>
-<p>🛫 Data di check-in: {{ bookingRequest.checkInDate | date }}</p>
-<p>  🛬 Data di check-out: {{ bookingRequest.checkOutDate | date }}
+<h1>Riepilogo viaggio:</h1>
+<p>
+  🛫 Data di check-in: {{ bookingRequest.checkInDate | date : "dd/MM/yyyy" }}
 </p>
-<p>  💰 Prezzo totale: {{ bookingRequest.totalPrice }}€</p>
-
-  
-
+<p>
+  🛬 Data di check-out: {{ bookingRequest.checkOutDate | date : "dd/MM/yyyy" }}
+</p>
+<p>💰 Prezzo totale: {{ bookingRequest.totalPrice }}€</p>
 
 <p>Paga sicuro con Google Pay o Apple Pay. 🔒</p>
 <div class="payPal">
-  
   <div class="responsivePayPal">
     <button mat-raised-button color="">
-    <img src="https://aido.it/wp-content/uploads/2023/06/Apple_Pay_Google_Pay.png" alt="" (click)="confirmBooking()" />
-  </button>
-
+      <img
+        src="https://aido.it/wp-content/uploads/2023/06/Apple_Pay_Google_Pay.png"
+        alt=""
+        (click)="confirmBooking()"
+      />
+    </button>
   </div>
 
-    <div class="confirm">
-      <mat-spinner *ngIf="showSpinner"></mat-spinner>
-    </div>
-  
-    
-  
+  <div class="confirm">
+    <mat-spinner *ngIf="showSpinner"></mat-spinner>
+  </div>
+</div>

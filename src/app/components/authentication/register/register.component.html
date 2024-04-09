@@ -1,26 +1,63 @@
-
-    <mat-card-title class="text-center">Create Account</mat-card-title>
-    <mat-card-content>
-      <form #authForm="ngForm" (ngSubmit)="register(authForm)">
-        <mat-form-field class="form-field">
-          <input matInput type="text" placeholder="Firstname" ngModel name="firstname" required />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <input matInput type="text" placeholder="Lastname" ngModel name="lastname" required />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <input matInput type="date" placeholder="Birthdate" ngModel name="birthdate" required />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <input matInput type="email" placeholder="Email" ngModel name="email" required email />
-        </mat-form-field>
-        <mat-form-field class="form-field">
-          <input matInput type="password" placeholder="Password" ngModel name="password" required minlength="4" />
-        </mat-form-field>
-        <div class="button-flex-container">
-          <button type="submit" mat-button>Register</button>
-        </div>
-      </form>
-      <p class="mb-0">Already have an account? <a routerLink="/login">Login</a></p>
-    </mat-card-content>
-
+<mat-card-title class="text-center">Crea un account</mat-card-title>
+<mat-card-content>
+  <form #authForm="ngForm" (ngSubmit)="register(authForm)">
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        type="text"
+        placeholder="Firstname"
+        ngModel
+        name="firstname"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        type="text"
+        placeholder="Lastname"
+        ngModel
+        name="lastname"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        type="date"
+        placeholder="Birthdate"
+        ngModel
+        name="birthdate"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        type="email"
+        placeholder="Email"
+        ngModel
+        name="email"
+        required
+        email
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input
+        matInput
+        type="password"
+        placeholder="Password"
+        ngModel
+        name="password"
+        required
+        minlength="4"
+      />
+    </mat-form-field>
+    <div class="button-flex-container">
+      <button type="submit" mat-button>Register</button>
+    </div>
+  </form>
+  <p class="mb-0">
+    Already have an account? <a (click)="openLoginModal()">Login</a>
+  </p>
+</mat-card-content>

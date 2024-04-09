@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,21 +9,27 @@ import { AuthInterceptorService } from '../services/auth/auth-interceptor.servic
 import { HomeModule } from './components/home/home.module';
 import { SharedModule } from './components/shared/shared.module';
 import { RoomsModule } from './components/rooms/rooms.module';
-import { ProfileModule } from './components/profile/dashboard.module';
+import { ProfileModule } from './components/profile/profile.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './material/material.module';
 import { MatNativeDateModule } from '@angular/material/core';
-import { SearchBarComponent } from './components/shared/search-bar/search-bar.component';
-import { ListRoomsAvailableComponent } from './components/shared/list-rooms-available/list-rooms-available.component';
-import { BookingSummaryComponent } from './components/rooms/booking-summary/booking-summary.component';
+import { AdminModule } from './components/dashboard/admin-panel/admin.module';
+import { CreateBookingModalComponent } from './components/dashboard/admin-panel/create-booking-modal/create-booking-modal.component';
+import { UpdateBookingModalComponent } from './components/dashboard/admin-panel/update-booking-modal/update-booking-modal.component';
 
 
+const darkModeEnabled = localStorage.getItem('darkModeEnabled') === 'true';
+if (darkModeEnabled) {
+  document.body.classList.add('dark-mode');
+}
 
 
 @NgModule({
   declarations: [
-    AppComponent
-          ],
+    AppComponent,
+    CreateBookingModalComponent,
+    UpdateBookingModalComponent
+  ],
   imports: [
     BrowserModule,
     MaterialModule,
@@ -37,15 +43,21 @@ import { BookingSummaryComponent } from './components/rooms/booking-summary/book
     ProfileModule,
     SharedModule,
     MaterialModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AdminModule
   ],
   providers: [ 
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptorService,
-    multi: true
-  }, provideAnimationsAsync(),
-],
+      provide: LOCALE_ID,
+      useValue: 'it-IT'
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

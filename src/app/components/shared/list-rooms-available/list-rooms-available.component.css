@@ -1,0 +1,8 @@
+.room-card {
+  max-width: 80%;
+  transition: transform 0.2s;
+}
+
+.room-card:hover {
+  transform: scale(1.05);
+}

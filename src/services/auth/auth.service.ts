@@ -4,33 +4,26 @@ import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../model/user';
-import { jwtDecode } from 'jwt-decode';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../../app/components/authentication/login/login.component';
-
-export interface AuthResponseData {
-  access_token: string;
-  refresh_token: string;
-  user: {
-    email: string;
-    firstname: string;
-    lastname: string;
-  };
-  expirationDate: Date;
-}
+import { AuthResponseData } from '../../model/auth-response-dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  // BehaviorSubject per contenere lo stato dell'utente
   user = new BehaviorSubject<User | null>(null);
   returnUrl: string = '';
   private baseUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient, private router: Router, private modalService: NgbModal) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private modalService: NgbModal
+  ) {}
 
-
-  
+  // Apri la modal di login
   openLoginModal() {
     const modalRef = this.modalService.open(LoginComponent, { centered: true });
     modalRef.componentInstance.loginSuccess.subscribe(() => {
@@ -41,6 +34,7 @@ export class AuthService {
     });
   }
 
+  // Verifica lo stato dell'utente
   checkStatus() {
     if (this.user.value) {
       return this.user.value;
@@ -48,6 +42,7 @@ export class AuthService {
     return null;
   }
 
+  // Controlla se ci sono dati dell'utente memorizzati localmente
   checkLocalStorage() {
     const storedUserData = localStorage.getItem('userData');
     console.log(storedUserData);
@@ -60,16 +55,19 @@ export class AuthService {
     }
   }
 
+  // Ottieni l'utente corrente
   getUser(): User | null {
     return this.user.value;
   }
 
+  // Effettua il logout dell'utente
   logout() {
     this.user.next(null);
     this.router.navigate(['/']);
     localStorage.removeItem('userData');
   }
 
+  // Registra un nuovo utente
   register(
     firstname: string,
     lastname: string,
@@ -102,6 +100,7 @@ export class AuthService {
       );
   }
 
+  // Effettua il login dell'utente
   login(email: string, password: string): Observable<AuthResponseData> {
     const loginData = {
       email: email,
@@ -124,6 +123,7 @@ export class AuthService {
       );
   }
 
+  // Gestisce l'autenticazione dell'utente
   private handleAuthentication(
     token: string,
     refreshToken: string,
@@ -147,11 +147,13 @@ export class AuthService {
     this.storeUserData(newUser);
   }
 
+  // Salva i dati dell'utente nella memoria locale
   private storeUserData(user: User): void {
     console.log(user);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
+  // Gestisce gli errori durante la comunicazione con il server
   private handleError(errorRes: HttpErrorResponse) {
     console.log(errorRes);
     let errorMessage = 'An unknown error occurred!';
@@ -172,7 +174,3 @@ export class AuthService {
     return throwError(() => errorMessage);
   }
 }
-function jwt_decode(access_token: any): any {
-  throw new Error('Function not implemented.');
-}
-

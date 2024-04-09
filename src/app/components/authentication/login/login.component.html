@@ -4,16 +4,35 @@
     <mat-card-content>
       <form #authForm="ngForm" (ngSubmit)="login(authForm)">
         <mat-form-field class="form-field">
-          <input matInput type="email" placeholder="Email" ngModel name="email" required email />
+          <input
+            matInput
+            type="email"
+            placeholder="Email"
+            ngModel
+            name="email"
+            required
+            email
+          />
         </mat-form-field>
         <mat-form-field class="form-field">
-          <input matInput type="password" placeholder="Password" ngModel name="password" required minlength="4" />
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            ngModel
+            name="password"
+            required
+            minlength="4"
+          />
         </mat-form-field>
         <div class="button-flex-container">
           <button type="submit" mat-button>Login</button>
         </div>
       </form>
-      <p class="mb-0">Don't have an account? <a (click)="openRegisterModal()">Register</a></p>
+
+      <p class="mb-0">
+        Don't have an account? <a (click)="openRegisterModal()">Register</a>
+      </p>
     </mat-card-content>
   </mat-card>
 </div>

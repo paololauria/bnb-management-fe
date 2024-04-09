@@ -2,16 +2,26 @@
   <div class="mat-grid-list">
     <mat-grid-list cols="2">
       <mat-grid-tile *ngFor="let room of availableRooms">
-        <mat-card class="room-card">
+        <mat-card
+          class="room-card"
+          (click)="navigateToRoomDetails(room.roomId)"
+        >
           <mat-card-header>
-            <mat-card-title>{{ room.roomName }}</mat-card-title>
-            <mat-card-subtitle>Max Ospiti: {{ room.maxGuest }}</mat-card-subtitle>
+            <mat-card-title
+              ><h1>{{ room.roomName }}</h1></mat-card-title
+            >
+            <mat-card-subtitle>Ospiti: {{ room.maxGuest }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <p>Prezzo per notte: {{ room.pricePerNight | currency }}</p>
-            <p>Prezzo totale: {{bookingRequest?.totalPrice}}</p>
+            <p>Prezzo per notte: {{ room.pricePerNight }}€</p>
+            <p>Prezzo totale: {{ bookingRequest.totalPrice }}€</p>
             <div class="image-container">
-              <img [src]="room.roomCover" alt="Room Cover Image" class="room-image" style="max-width:50%;"/>
+              <img
+                [src]="room.roomCover"
+                alt="Room Cover Image"
+                class="room-image"
+                style="max-width: 50%"
+              />
             </div>
           </mat-card-content>
         </mat-card>

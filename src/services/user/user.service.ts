@@ -9,8 +9,8 @@ import { ReviewDto } from '../../model/review-dto';
 })
 export class UserService {
   private baseUrl = 'http://localhost:8080/api/user';
- 
-    constructor(private http: HttpClient) {}
+
+  constructor(private http: HttpClient) {}
 
   getAllUser(): Observable<UserDto[]> {
     return this.http.get<UserDto[]>(`${this.baseUrl}/all`);
@@ -21,7 +21,11 @@ export class UserService {
   }
 
   uploadUserProfileImage(userId: number, imageUrl: string): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/${userId}/profile-image`, imageUrl, { observe: 'response' });
+    return this.http.post<any>(
+      `${this.baseUrl}/${userId}/profile-image`,
+      imageUrl,
+      { observe: 'response' }
+    );
   }
 
   createReview(reviewData: ReviewDto, roomId: number): Observable<void> {

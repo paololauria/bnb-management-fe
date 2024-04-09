@@ -10,9 +10,9 @@
   <div class="review-form-card" *ngFor="let r of reviewsResult">
     <mat-card class="review-card">
       <mat-card-content>
-        <h4>Username: {{ r.userName }}</h4>
-        <p>Voto: {{ r.rating }}</p>
-        <p>Commento: {{ r.comment }}</p>
+        <h2>{{ r.userName }}</h2>
+        <p>⭐️ {{ r.rating }}</p>
+        <p>{{ r.comment }}</p>
         <p>{{ r.timestamp | date }}</p>
       </mat-card-content>
     </mat-card>

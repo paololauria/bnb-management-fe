@@ -1,4 +1,4 @@
-import { BookingDto } from "./booking-dto";
+import { BookingDto } from './booking-dto';
 
 export interface UserDto {
   id: number;

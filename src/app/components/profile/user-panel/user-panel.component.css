@@ -5,6 +5,13 @@ body {
   background-color: #e2e8f0;
   font-family: "Bayon", sans-serif;
 }
+body {
+  margin-top: 20px;
+  color: #1a202c;
+  text-align: left;
+  background-color: #e2e8f0;
+  font-family: "Bayon", sans-serif;
+}
 .main-body {
   padding: 15px;
 }
@@ -104,4 +111,253 @@ i {
 }
 i {
   padding: 4px;
+}
+.main-body {
+  padding: 15px;
+}
+
+.cardz {
+  font-size: 20px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.cardz-body {
+  font-size: 20px;
+
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem;
+}
+.cardz-body img {
+  width: auto;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card {
+  font-size: 20px;
+  position: relative;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  margin: 20px;
+  max-width: 400px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2),
+              0 3px 3px -2px rgba(0, 0, 0, 0.14),
+              0 1px 8px 0 rgba(0, 0, 0, 0.12);
+  color: #6d7487;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+.card-title {
+  color: #EB5181;
+}
+
+.card-body {
+  font-size: 20px;
+
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem;
+}
+
+.gutters-sm {
+  margin-right: -8px;
+  margin-left: -8px;
+}
+
+.gutters-sm > .col,
+.gutters-sm > [class*="col-"] {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.mb-3,
+.my-3 {
+  margin-bottom: 1rem !important;
+}
+
+.bg-gray-300 {
+  background-color: #e2e8f0;
+}
+.h-100 {
+  height: 100% !important;
+}
+.shadow-none {
+  box-shadow: none !important;
+}
+
+.single-feed {
+  border: 1px solid black;
+  border-radius: 12px;
+  margin-bottom: 5px;
+  width: 100%;
+
+  color: black;
+}
+i {
+  color: gold;
+}
+
+.card-body img {
+  width: auto;
+  height: 150px;
+  object-fit: cover;
+}
+.selected {
+  border: 2px solid blue; 
+}
+.import {
+  border: 1px solid black ;
+  border-radius: 12px;
+}
+
+
+.booking-card {
+  width: 90%;
+  margin-bottom: 20px; 
+  position: relative;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+  background-color: ghostwhite;
+
+}
+
+.booking-card:hover {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.ptitle {
+  font-family: 'Roboto', sans-serif;
+}
+i {
+  padding: 4px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+.image {
+  width: 100%;
+  border-radius: 4px;
+}
+.button {
+  background-color: #3559a5;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 20px;
+  height: 50px;
+  width: 150px;
+  float: right;
+  cursor: pointer;
+}
+.section {
+  padding: 30px;
+}
+.section::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+.section__airport {
+  font-size: 60px;
+  display: inline-block;
+  width: 49%;
+  line-height: 1;
+  position: relative;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section__from::after {
+  content: '';
+  background-image: url(https://i.imgur.com/ppufFur.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: 20px;
+  width: 20px;
+  transform: translateX(50%) translateY(-50%);
+}
+.section__to {
+  text-align: right;
+}
+.barcode {
+  float: left;
+  height: 50px;
+  width: 150px;
+  opacity: .5;
+}
+.info {
+  margin: 30px 0;
+  display: block;
+  clear: both;
+  position: relative;
+}
+.info::before,
+.info::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #D8E1E5;
+}
+.info::before {
+  top: 0;
+}
+.info::after {
+  bottom: 0;
+}
+.info__section {
+  padding: 30px 0 30px 30px;
+  position: relative;
+  width: 49%;
+  display: inline-block;
+}
+.info__section--first::after {
+  content: '';
+  display: block;
+  width: 1px;
+  background-color: #D8E1E5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.info__section dt {
+  color: black;
+}
+.info__section dd {
+  font-size: 20px;
+}
+.info__section dt:not(:first-child) {
+  margin-top: 20px;
+}
+
+h1 {
+  color: #EB5181;
 }

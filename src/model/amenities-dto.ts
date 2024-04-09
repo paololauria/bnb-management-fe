@@ -1,5 +1,4 @@
 export interface AmenitiesDto {
-   amenityName: string;
-   amenityImage: string;
+  amenityName: string;
+  amenityImage: string;
 }
-  

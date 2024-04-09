@@ -6,12 +6,21 @@
         <p>📍 {{ roomDto.location }}</p>
         <p>⭐️ {{ roomDto.averageRating }}</p>
         <div class="image-container">
-          <img [src]="roomDto.roomCover" alt="Room Cover Image" class="room-image" />
+          <img
+            [src]="roomDto.roomCover"
+            alt="Room Cover Image"
+            class="room-image"
+          />
         </div>
-        <p>🛏️ {{ roomDto.maxGuest }} ospiti ・ 😴 1 camera da letto ・ 🚽 1 bagno ・ 🥘 1 cucina</p>
+        <p>
+          🛏️ {{ roomDto.maxGuest }} ospiti ・ 😴 1 camera da letto ・ 🚽 1 bagno
+          ・ 🥘 1 cucina
+        </p>
         <p>{{ roomDto.description }}</p>
         <ul>
-          <li *ngFor="let amenity of roomDto.amenities">{{ amenity.amenityName }} {{amenity.amenityImage}}</li>
+          <li *ngFor="let amenity of roomDto.amenities">
+            {{ amenity.amenityName }} {{ amenity.amenityImage }}
+          </li>
         </ul>
       </mat-card-content>
     </mat-card>
@@ -21,17 +30,18 @@
     <mat-card>
       <mat-card-content>
         <h1>💸 {{ roomDto.pricePerNight }}€ <span>a notte</span></h1>
-        <app-calendar [roomId]="roomDto.roomId" [roomDto]="roomDto"></app-calendar>
+        <app-calendar
+          [roomId]="roomDto.roomId"
+          [roomDto]="roomDto"
+        ></app-calendar>
       </mat-card-content>
     </mat-card>
   </div>
   <div class="right-card">
     <mat-card>
       <mat-card-content>
-    <app-rooms-reviews [roomId]="roomDto.roomId"></app-rooms-reviews>
-  </mat-card-content>
-  </mat-card>
+        <app-rooms-reviews [roomId]="roomDto.roomId"></app-rooms-reviews>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
-
-
